@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--    <column name="investor_id" valueSequenceNext="investor_sequence" valueComputed="(SELECT MAX(investor_id)+1 FROM investor)" />-->
+
+
+    <changeSet author="Tebogo" id="John_insert_01">
+        <insert tableName="investor">
+            <column name="id" type="BIGSERIAL" defaultValueComputed="nextval('mytable_id_seq')">
+                <constraints primaryKey="true" primaryKeyName="mytable_pkey"/>
+            </column>
+            <column name="name" value="John"/>
+            <column name="surname" value="Cena"/>
+            <column name="date_of_birth" valueDate="2010-01-01"/>
+            <column name="address" value="268 West Avenue, Centurion, 0157"/>
+            <column name="mobile_number" value="0721547856"/>
+            <column name="email_address" value="johncena@gmail.com"/>
+        </insert>
+    </changeSet>
+
+
+    <changeSet author="Tebogo" id="John_insert_product_01">
+        <insert tableName="product">
+            <column name="product_id" value="1"/>
+            <column name="product_key" value="SAVINGS"/>
+            <column name="balance" valueNumeric="15000"/>
+            <column name="investor_id" value="1"/>
+<!--            <column name="product_configuration_id" valueComputed="(select id from esp_config where sales_partner = 'WINSERV')" />-->
+
+        </insert>
+    </changeSet>
+</databaseChangeLog>

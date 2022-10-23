@@ -1,0 +1,97 @@
+openapi: 3.0.3
+info:
+  title: Investor Product API
+  description: investments Product
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080/momentum/investments'
+
+paths:
+
+  /investor/v1:
+    post:
+      description: Return A List Of Investors
+      responses:
+        '200':
+          description: "Successful Return Investor"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Investor'
+        '404':
+          description: "Investor was not found"
+  /products/v1:
+    get:
+      description: Retrieve investors products
+      responses:
+        '200':
+          description: "Investor Found and returned"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Investor'
+              example:
+                product ID: (RETIREMENT/SAVINGS)
+                name: john
+                currentBalance: 15 000
+
+        '404':
+          description: "Investor product was not found"
+  /withdrawal/v1:
+    put:
+      description: Withdraw investment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Investor'
+      responses:
+        '201':
+          description: "Successfully Withdrawn"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Investor'
+              example:
+                example:
+                  product ID: (RETIREMENT/SAVINGS)
+                  name: john
+                  currentBalance: 15 000
+
+        '200':
+          description: "Successfully updated Brand"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Investor'
+              example:
+                product ID: (RETIREMENT/SAVINGS)
+                name: john
+                currentBalance: 15 000
+
+components:
+  schemas:
+    Investor:
+      description: 'investors'
+      type: object
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+        dateOfBirth :
+          type: string
+        mobileNumber:
+          type: string
+        emailAddress:
+          type: string
+        Products:
+          $ref: '#/components/schemas/Products'
+    Products:
+      description: 'Type of investments'
+      type: object
+      properties:
+        retirement:
+          type: number
+        savings:
+          type: number
