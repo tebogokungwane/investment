@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/investor/v1").hasRole("USER")
                 .antMatchers(HttpMethod.GET,"/investors/v1").hasRole("USER")
-                .antMatchers(HttpMethod.PUT,"/investors/v1/**").hasRole("USER")
+                .antMatchers(HttpMethod.PUT,"/withdrawal/**").hasRole("USER")
                 .and()
                 .csrf().disable()
                 .formLogin().disable();

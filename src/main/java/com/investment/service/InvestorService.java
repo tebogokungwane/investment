@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -34,9 +33,6 @@ public class InvestorService{
         return investorRepository.findAll();
     }
 
-//    //public List<Investor> getInvestorByName(){
-//        return (List<Investor>) investorRepository.listOfProductByInvestor();
-//    }
 
     public List<InvestorDetails> getInvestorInformation(){
 
@@ -53,16 +49,32 @@ public class InvestorService{
         }
         return investorDetailsList;
     }
-
     public Product updateInvestorById(Long productId, Product product){
         Product byIdAndProductKey = productRepository.findByInvestor_InvestorIdAndProductKey(productId, product.getProductKey());
+
+        double balance = byIdAndProductKey.getBalance() - product.getBalance();
+
+        double amountToWithdraw = byIdAndProductKey.getBalance() * 90 /100;
+
+
         LocalDate dateOfBirthFromDB = byIdAndProductKey.getInvestor().getDateOfBirth();
         int dayOfYear = dateOfBirthFromDB.getYear();
+        LocalDate currentYear = LocalDate.now();
 
-        System.out.println("customer date "+ dayOfYear);
-        double a = byIdAndProductKey.getBalance() - product.getBalance();
-        byIdAndProductKey.setBalance(a);
+        int year = currentYear.getYear() - dayOfYear;
 
-        return productRepository.save(byIdAndProductKey);
+        if((year < 65) && (byIdAndProductKey.getProductKey().equals("RETIREMENT"))){
+             throw  new RuntimeException("You too young to with draw from retirement");
+        }
+        if(product.getBalance() > byIdAndProductKey.getBalance()){
+            throw new RuntimeException("Balance is less than withdrawal");
+        }
+        if(product.getBalance() > amountToWithdraw){
+            throw new RuntimeException("Cannot withdraw an amount more than 90% of the current balance");
+        }
+        else {
+            byIdAndProductKey.setBalance(balance);
+            return productRepository.save(byIdAndProductKey);
+        }
     }
 }

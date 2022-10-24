@@ -41,7 +41,7 @@ public class InvestmentController {
     }
 
     @PutMapping("/withdrawal/{id}")
-    public Product updateDepartmentById(@PathVariable("id") Long productId, @RequestBody Product product){
+    public Product updateDepartmentById(@PathVariable("id") Long productId, @RequestBody Product product) throws Throwable {
 
         return investorService.updateInvestorById(productId,product);
     }

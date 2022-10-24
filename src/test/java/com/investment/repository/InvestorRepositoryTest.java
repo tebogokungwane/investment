@@ -5,10 +5,7 @@ import com.investment.entity.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
@@ -25,12 +22,12 @@ public class InvestorRepositoryTest {
 
         Product product1 = Product
                 .builder()
-                .productKey("SAVING")
+                .productKey("SAVINGS")
                 .balance(10000)
                 .build();
         Product product2 = Product
                 .builder()
-                .productKey("Retirement")
+                .productKey("RETIREMENT")
                 .balance(30000)
                 .build();
 
