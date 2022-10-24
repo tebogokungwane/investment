@@ -10,8 +10,4 @@ import java.util.Collection;
 @Repository
 public interface InvestorRepository extends JpaRepository<Investor,Long> {
 
-    @Query(
-            value = "SELECT * FROM product where investor_id = (SELECT investor_id from investor where name = 'Smith')",
-            nativeQuery = true)
-    Collection<Investor> listOfProductByInvestor();
 }

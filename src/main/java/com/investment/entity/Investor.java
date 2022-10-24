@@ -2,6 +2,8 @@ package com.investment.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +30,7 @@ public class Investor  {
     private Long investorId;
     private String name;
     private String surname;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String address;
     private String mobileNumber;
     private String emailAddress;

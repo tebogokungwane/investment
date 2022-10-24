@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +20,8 @@ public class InvestorRepositoryTest {
     @Test
     public void saveInvestor(){
 
-        Date date = new Date(1991,02,22);
+        LocalDate dateOfBirth = LocalDate.of(1987, 9, 24);
+
 
         Product product1 = Product
                 .builder()
@@ -35,8 +38,8 @@ public class InvestorRepositoryTest {
                 .builder()
                 .name("Manqoba")
                 .surname("Hlatsuayo")
-                .dateOfBirth(date)
-                .address("Omonde view")
+                .dateOfBirth(dateOfBirth)
+                .address("Ackland park")
                 .mobileNumber("0711382940")
                 .emailAddress("manqoba@gmail.com")
                 .products(List.of(product1,product2))

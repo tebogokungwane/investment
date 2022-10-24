@@ -30,8 +30,6 @@
             <column name="product_key" value="SAVINGS"/>
             <column name="balance" valueNumeric="15000"/>
             <column name="investor_id" value="1"/>
-<!--            <column name="product_configuration_id" valueComputed="(select id from esp_config where sales_partner = 'WINSERV')" />-->
-
         </insert>
     </changeSet>
 </databaseChangeLog>
