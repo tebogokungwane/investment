@@ -42,6 +42,8 @@ public class InvestorService{
         for(Product products : productList ){
             InvestorDetails investorDetails = new InvestorDetails();
             investorDetails.setName(products.getInvestor().getName());
+            investorDetails.setSurname(products.getInvestor().getSurname());
+            investorDetails.setProductKey(products.getProductKey());
             investorDetails.setBalance(products.getBalance());
 
             investorDetailsList.add(investorDetails);

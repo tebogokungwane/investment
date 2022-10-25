@@ -20,7 +20,6 @@ public class InvestmentController {
     @PostMapping("/investor/v1")
     public Investor saveInvestor(@RequestBody Investor investor){
 
-        System.out.println("Investor values --------"+ investor);
         return investorService.saveInvestor(investor);
     }
 
@@ -29,12 +28,8 @@ public class InvestmentController {
         return investorService.getAllInvestors();
     }
 
-//    @GetMapping("/investmentByName/v1")
-//    public List<Investor> getInvestorByName(){
-//        return investorService.getInvestorByName();
-//    }
 
-    @GetMapping("/investorDetails/v1")
+    @GetMapping("/investor/v1")
     public List<InvestorDetails> getInvestorDetails(){
         List<InvestorDetails> investorInformation = investorService.getInvestorInformation();
         return investorInformation;
